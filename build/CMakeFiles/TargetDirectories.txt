@@ -1,3 +1,0 @@
-/Users/gyeongho/workspace/napi/rtsp_client/build/CMakeFiles/rtsp_client.dir
-/Users/gyeongho/workspace/napi/rtsp_client/build/CMakeFiles/edit_cache.dir
-/Users/gyeongho/workspace/napi/rtsp_client/build/CMakeFiles/rebuild_cache.dir
