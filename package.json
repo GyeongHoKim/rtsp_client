@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "main": "./index.js",
   "scripts": {
-    "install": "cmake-js compile"
+    "test": "jest",
+    "configure": "cmake-js configure",
+    "compile": "cmake-js compile",
+    "rebuild": "cmake-js rebuild"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,11 @@
     "node-addon-api": "^8.0.0"
   },
   "binary": {
-    "napi_versions": [9]
+    "napi_versions": [
+      9
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
