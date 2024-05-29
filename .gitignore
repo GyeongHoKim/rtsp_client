@@ -2,3 +2,4 @@ node_modules
 vcpkg
 cmake-build-debug
 build
+.DS_Store

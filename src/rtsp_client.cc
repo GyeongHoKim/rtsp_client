@@ -1,4 +1,3 @@
-// rtsp_client.cpp
 #include "rtsp_client.h"
 
 Napi::FunctionReference RTSPClientWrapper::constructor;
