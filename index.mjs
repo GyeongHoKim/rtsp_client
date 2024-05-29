@@ -1,11 +1,12 @@
-import { createRequire } from 'module';
+import {createRequire} from 'module';
+
 const require = createRequire(import.meta.url);
 
 const addon = require('bindings')('addon');
 
 class RTSPClient {
     constructor(options) {
-        this.client = new addon.RTSPClient(options);
+        this.client = new addon.RtspClientNapi(options);
     }
 
     connect(url) {
@@ -25,4 +26,4 @@ class RTSPClient {
     }
 }
 
-export { RTSPClient };
+export {RTSPClient};

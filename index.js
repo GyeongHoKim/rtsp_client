@@ -3,7 +3,7 @@ const addon = require('bindings')('rtsp_client');
 // RTSPClient 클래스 정의
 class RTSPClient {
     constructor(options) {
-        this.client = new addon.RTSPClient(options);
+        this.client = new addon.RtspClientNapi(options);
     }
 
     connect(url) {
