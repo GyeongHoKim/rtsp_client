@@ -1,6 +1,8 @@
-const addon = require('bindings')('rtsp_client');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
-// RTSPClient 클래스 정의
+const addon = require('bindings')('addon');
+
 class RTSPClient {
     constructor(options) {
         this.client = new addon.RTSPClient(options);
@@ -23,6 +25,4 @@ class RTSPClient {
     }
 }
 
-module.exports = {
-    RTSPClient
-};
+export { RTSPClient };

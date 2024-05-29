@@ -4,8 +4,8 @@
 
 #include <napi.h>
 #include <string>
-#include <liveMedia.hh>
-#include <BasicUsageEnvironment.hh>
+#include "liveMedia.hh"
+#include "BasicUsageEnvironment.hh"
 
 class RTSPClientWrapper : public Napi::ObjectWrap<RTSPClientWrapper>
 {
