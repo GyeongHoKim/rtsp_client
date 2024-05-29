@@ -24,6 +24,7 @@ set(HEADER_FILES
 )
 set(SOURCE_FILES
         "src/rtsp_client.cc"
+        "src/addon.cc"
 )
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${CMAKE_JS_SRC})
