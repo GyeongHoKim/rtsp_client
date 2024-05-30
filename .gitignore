@@ -2,5 +2,10 @@ node_modules
 vcpkg
 cmake-build-debug
 build
+build_vs2022_x64
 coverage
 .DS_Store
+*.vcxproj
+*.vcxproj.filters
+*.sln
+cmake_install.cmake
