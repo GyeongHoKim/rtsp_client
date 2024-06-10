@@ -10,10 +10,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if (WIN32)
-        set(VCPKG_DIR C:/dev/vcpkg/installed/x64-windows)
-elseif(APPLE)
-        set(VCPKG_DIR ./vcpkg/installed/arm64-osx)
-endif()
+    set(VCPKG_DIR C:/dev/vcpkg/installed/x64-windows)
+elseif (APPLE)
+    set(VCPKG_DIR ./vcpkg/installed/arm64-osx)
+endif ()
 
 # Include Node-API wrappers
 execute_process(
@@ -26,33 +26,39 @@ string(REGEX REPLACE "[\r\n\"]" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
 include_directories(${CMAKE_JS_INC} ${VCPKG_DIR}/include ${NODE_ADDON_API_DIR})
 
 set(HEADER_FILES
-        "src/rtsp_client.h"
+        "src/rtspClientFactory.h"
+        "src/ourRTSPClient.h"
+        "src/StreamClientState.h"
+        "src/DummySink.h"
 )
 set(SOURCE_FILES
-        "src/rtsp_client.cc"
+        "src/rtspClientFactory.cc"
         "src/addon.cc"
+        "src/ourRTSPClient.cc"
+        "src/StreamClientState.cc"
+        "src/DummySink.cc"
 )
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${CMAKE_JS_SRC})
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 
 if (WIN32)
-        target_link_libraries(
-                ${PROJECT_NAME}
-                ${CMAKE_JS_LIB}
-                ${VCPKG_DIR}/lib/liveMedia.lib
-                ${VCPKG_DIR}/lib/BasicUsageEnvironment.lib
-                ${VCPKG_DIR}/lib/UsageEnvironment.lib
-        )
-elseif(APPLE)
-        target_link_libraries(
-                ${PROJECT_NAME}
-                ${CMAKE_JS_LIB}
-                ${VCPKG_DIR}/lib/libliveMedia.a
-                ${VCPKG_DIR}/lib/libBasicUsageEnvironment.a
-                ${VCPKG_DIR}/lib/libUsageEnvironment.a
-        )
-endif()
+    target_link_libraries(
+            ${PROJECT_NAME}
+            ${CMAKE_JS_LIB}
+            ${VCPKG_DIR}/lib/liveMedia.lib
+            ${VCPKG_DIR}/lib/BasicUsageEnvironment.lib
+            ${VCPKG_DIR}/lib/UsageEnvironment.lib
+    )
+elseif (APPLE)
+    target_link_libraries(
+            ${PROJECT_NAME}
+            ${CMAKE_JS_LIB}
+            ${VCPKG_DIR}/lib/libliveMedia.a
+            ${VCPKG_DIR}/lib/libBasicUsageEnvironment.a
+            ${VCPKG_DIR}/lib/libUsageEnvironment.a
+    )
+endif ()
 
 if (MSVC AND CMAKE_JS_NODELIB_DEF AND CMAKE_JS_NODELIB_TARGET)
     # Generate node.lib

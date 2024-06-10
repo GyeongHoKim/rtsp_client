@@ -1,8 +1,8 @@
 #include <napi.h>
-#include "rtsp_client.h"
+#include "rtspClientFactory.h"
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
-    return RtspClientNapi::Init(env, exports);
+    return RTSPClientFactory::Init(env, exports);
 }
 
 NODE_API_MODULE(addon, InitAll)

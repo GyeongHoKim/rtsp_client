@@ -6,18 +6,21 @@
 #include "liveMedia.hh"
 #include "BasicUsageEnvironment.hh"
 
-class RtspClientNapi : public Napi::ObjectWrap<RtspClientNapi> {
+class RTSPClientFactory : public Napi::ObjectWrap<RTSPClientFactory> {
 public:
     static Napi::Object Init(Napi::Env env, Napi::Object exports);
 
-    RtspClientNapi(const Napi::CallbackInfo &info);
+    RTSPClientFactory(const Napi::CallbackInfo &info);
 
-private:
     Napi::Value Test(const Napi::CallbackInfo &info);
 
-    std::string id_;
-    std::string password_;
-    std::string url_;
+    Napi::Value Play(const Napi::CallbackInfo &info);
+
+    Napi::Value TearDown(const Napi::CallbackInfo &info);
+
+private:
+    TaskScheduler *taskScheduler;
+    UsageEnvironment *usageEnvironment;
 };
 
 #endif
