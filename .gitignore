@@ -1,8 +1,10 @@
 node_modules
 vcpkg
+vcpkg_installed
 cmake-build-debug
 build
 build_vs2022_x64
+myRtspClient
 coverage
 .DS_Store
 *.vcxproj

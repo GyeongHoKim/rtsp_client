@@ -8,6 +8,7 @@ add_definitions(-DNAPI_VERSION=9)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(MYRTSPCLIENT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/myRtspClient/myRtspClient/include)
 
 if (WIN32)
     set(VCPKG_DIR C:/dev/vcpkg/installed/x64-windows)
@@ -23,20 +24,14 @@ execute_process(
 )
 string(REGEX REPLACE "[\r\n\"]" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
 
-include_directories(${CMAKE_JS_INC} ${VCPKG_DIR}/include ${NODE_ADDON_API_DIR})
+include_directories(${CMAKE_JS_INC} ${NODE_ADDON_API_DIR} ${MYRTSPCLIENT_INCLUDE_DIR})
 
 set(HEADER_FILES
-        "src/rtspClientFactory.h"
-        "src/ourRTSPClient.h"
-        "src/StreamClientState.h"
-        "src/DummySink.h"
+        "src/GyeongHoRtspClient.h"
 )
 set(SOURCE_FILES
-        "src/rtspClientFactory.cc"
         "src/addon.cc"
-        "src/ourRTSPClient.cc"
-        "src/StreamClientState.cc"
-        "src/DummySink.cc"
+        "src/GyeongHoRtspClient.cc"
 )
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${CMAKE_JS_SRC})
@@ -46,17 +41,13 @@ if (WIN32)
     target_link_libraries(
             ${PROJECT_NAME}
             ${CMAKE_JS_LIB}
-            ${VCPKG_DIR}/lib/liveMedia.lib
-            ${VCPKG_DIR}/lib/BasicUsageEnvironment.lib
-            ${VCPKG_DIR}/lib/UsageEnvironment.lib
+            ${MYRTSPCLIENT_INCLUDE_DIR}/../libmyRtspClient.lib
     )
 elseif (APPLE)
     target_link_libraries(
             ${PROJECT_NAME}
             ${CMAKE_JS_LIB}
-            ${VCPKG_DIR}/lib/libliveMedia.a
-            ${VCPKG_DIR}/lib/libBasicUsageEnvironment.a
-            ${VCPKG_DIR}/lib/libUsageEnvironment.a
+            ${MYRTSPCLIENT_INCLUDE_DIR}/../libmyRtspClient.a
     )
 endif ()
 
