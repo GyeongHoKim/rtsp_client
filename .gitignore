@@ -11,3 +11,4 @@ coverage
 *.vcxproj.filters
 *.sln
 cmake_install.cmake
+.env

@@ -13,6 +13,8 @@ public:
 private:
     Napi::Value Test(const Napi::CallbackInfo &info);
 
+    Napi::Value SetURL(const Napi::CallbackInfo &info);
+
     Napi::Value Describe(const Napi::CallbackInfo &info);
 
     Napi::Value Setup(const Napi::CallbackInfo &info);
